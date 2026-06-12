@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ribhav Bansal — AI & Full-Stack Engineer</title>
+<meta name="description" content="AI & Full-Stack Engineer at PhonePe. I ship AI products end-to-end: native clients, Python backends, and LLM pipelines with RAG, GraphRAG, and multi-model orchestration.">
+<meta property="og:title" content="Ribhav Bansal — AI & Full-Stack Engineer">
+<meta property="og:description" content="SDE @ PhonePe · Builder of MeetingMind — an AI meeting assistant spanning iOS, Chrome, and a FastAPI backend with RAG/GraphRAG.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ribhavbansal.vercel.app">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%235046E5'/><text x='50' y='68' font-size='52' font-family='Inter,system-ui,sans-serif' font-weight='700' fill='white' text-anchor='middle'>RB</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBFBF9; --ink:#16161A; --muted:#5C5C66; --accent:#5046E5; --accent-soft:rgba(80,70,229,.09);
+  --surface:#F1F1F4; --line:#E3E3E8; --card:#FFFFFF;
+}
+html.dark{
+  --bg:#101014; --ink:#ECECEF; --muted:#9A9AA6; --accent:#7B72FF; --accent-soft:rgba(123,114,255,.13);
+  --surface:#1A1A21; --line:#26262E; --card:#16161C;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif; font-size:16px; line-height:1.65;
+  -webkit-font-smoothing:antialiased; transition:background .25s,color .25s;
+}
+::selection{background:var(--accent); color:#fff}
+a{color:var(--accent); text-decoration:none}
+a:hover{text-decoration:underline; text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px}
+.wrap{max-width:1100px; margin:0 auto; padding:0 24px}
+.mono{font-family:'JetBrains Mono',monospace}
+h1,h2,h3{font-family:'Inter Tight',sans-serif; letter-spacing:-.02em}
+section{padding:88px 0}
+.kicker{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:14px}
+h2{font-size:clamp(26px,4vw,34px); font-weight:700; margin-bottom:28px}
+
+/* ---------- nav ---------- */
+nav{
+  position:sticky; top:0; z-index:50; backdrop-filter:blur(12px);
+  background:color-mix(in srgb,var(--bg) 82%,transparent);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{max-width:1100px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; gap:26px}
+.logo{font-family:'Inter Tight',sans-serif; font-weight:800; font-size:18px; color:var(--ink); letter-spacing:-.03em}
+.logo:hover{text-decoration:none; color:var(--accent)}
+.nav-links{display:flex; gap:22px; margin-left:auto; align-items:center}
+.nav-links a{color:var(--muted); font-size:14px; font-weight:500}
+.nav-links a:hover{color:var(--ink); text-decoration:none}
+.nav-links a.resume-link{color:var(--accent); font-weight:600}
+#theme-toggle{
+  background:none; border:1px solid var(--line); border-radius:8px; cursor:pointer;
+  width:34px; height:34px; display:grid; place-items:center; color:var(--muted); font-size:15px;
+}
+#theme-toggle:hover{border-color:var(--accent); color:var(--accent)}
+@media(max-width:720px){.nav-links a:not(.resume-link){display:none}}
+
+/* ---------- hero ---------- */
+.hero{padding:110px 0 96px}
+.hero h1{font-size:clamp(44px,8vw,84px); font-weight:800; letter-spacing:-.04em; line-height:1.02; margin-bottom:18px}
+.hero .role{font-size:clamp(18px,2.5vw,23px); font-weight:600; color:var(--ink); margin-bottom:14px}
+.hero .role .at{color:var(--muted); font-weight:400}
+.hero .value{max-width:640px; color:var(--muted); font-size:17px; margin-bottom:34px}
+.cta-row{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:64px}
+.btn{
+  display:inline-flex; align-items:center; gap:8px; padding:12px 22px; border-radius:10px;
+  font-weight:600; font-size:15px; transition:transform .15s,box-shadow .15s; border:1px solid transparent;
+}
+.btn:hover{text-decoration:none; transform:translateY(-1px)}
+.btn-primary{background:var(--accent); color:#fff}
+.btn-primary:hover{box-shadow:0 6px 20px rgba(80,70,229,.35)}
+.btn-ghost{border-color:var(--line); color:var(--ink)}
+.btn-ghost:hover{border-color:var(--accent); color:var(--accent)}
+
+/* live transcript — the signature moment */
+.transcript{
+  border:1px solid var(--line); border-radius:12px; background:var(--card);
+  max-width:720px; overflow:hidden;
+}
+.transcript-bar{
+  display:flex; align-items:center; gap:10px; padding:10px 16px;
+  border-bottom:1px solid var(--line); background:var(--surface);
+}
+.dot{width:8px; height:8px; border-radius:50%; background:#E0443E; animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.35}}
+.transcript-bar span{font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:.1em; color:var(--muted); text-transform:uppercase}
+.transcript-body{padding:18px 20px; font-family:'JetBrains Mono',monospace; font-size:14px; line-height:1.9; min-height:96px; color:var(--ink)}
+.transcript-body .ent{background:var(--accent-soft); color:var(--accent); border-radius:4px; padding:1px 5px; font-weight:500; opacity:0; transition:opacity .5s}
+.transcript-body .ent.on{opacity:1}
+.caret{display:inline-block; width:8px; height:17px; background:var(--accent); vertical-align:-3px; animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+@media(prefers-reduced-motion:reduce){
+  .dot,.caret{animation:none}
+  .transcript-body .ent{opacity:1}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- scroll reveal ---------- */
+.reveal{opacity:0; transform:translateY(14px); transition:opacity .45s ease,transform .45s ease}
+.reveal.in{opacity:1; transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1; transform:none; transition:none}}
+
+/* ---------- flagship ---------- */
+.flagship{background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+.flagship-head{display:flex; align-items:baseline; gap:16px; flex-wrap:wrap; margin-bottom:10px}
+.flagship-head h2{margin-bottom:0}
+.badge{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); border-radius:99px; padding:3px 12px}
+.pitch{max-width:680px; color:var(--muted); font-size:17px; margin-bottom:44px}
+.cap-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:44px}
+@media(max-width:760px){.cap-grid{grid-template-columns:1fr}}
+.cap{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:24px}
+.cap .num{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--accent); margin-bottom:10px; display:block}
+.cap h3{font-size:17px; font-weight:700; margin-bottom:8px}
+.cap p{font-size:14.5px; color:var(--muted)}
+/* architecture strip */
+.arch{margin-bottom:36px}
+.arch-label{font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:14px}
+.arch-row{display:flex; align-items:stretch; gap:0; flex-wrap:wrap}
+.arch-node{
+  background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px 18px;
+  font-family:'JetBrains Mono',monospace; font-size:12.5px; text-align:center; flex:1; min-width:130px;
+}
+.arch-node b{display:block; font-weight:500; color:var(--ink); font-size:13px; margin-bottom:2px}
+.arch-node span{color:var(--muted); font-size:11px; font-family:'Inter',sans-serif}
+.arch-arrow{align-self:center; padding:0 10px; color:var(--accent); font-size:16px; flex:0}
+@media(max-width:760px){.arch-row{flex-direction:column}.arch-arrow{transform:rotate(90deg); align-self:center; padding:4px 0}}
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px}
+.chip{font-family:'JetBrains Mono',monospace; font-size:12px; padding:5px 12px; border-radius:6px; background:var(--accent-soft); color:var(--accent)}
+.flagship-links{display:flex; gap:18px; align-items:center}
+.flagship-links a{font-weight:600; font-size:15px}
+/* product gallery */
+.gallery{display:flex; flex-direction:column; gap:18px; margin-bottom:44px}
+.shot{border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--card)}
+.shot img{display:block; width:100%; height:auto}
+.shot-bar{display:flex; gap:6px; padding:10px 14px; border-bottom:1px solid var(--line); background:var(--surface); align-items:center}
+.shot-bar i{width:9px; height:9px; border-radius:50%; background:var(--line); display:inline-block}
+.shot-bar span{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); margin-left:8px}
+.shot figcaption{padding:10px 16px; font-size:13px; color:var(--muted); border-top:1px solid var(--line)}
+.gallery-row{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+@media(max-width:760px){.gallery-row{grid-template-columns:1fr}}
+
+/* ---------- experience ---------- */
+.xp{border-left:2px solid var(--line); padding-left:28px; display:flex; flex-direction:column; gap:36px; max-width:760px}
+.xp-item{position:relative}
+.xp-item::before{content:""; position:absolute; left:-35px; top:7px; width:10px; height:10px; border-radius:50%; background:var(--accent)}
+.xp-item .when{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted); margin-bottom:4px; display:block}
+.xp-item h3{font-size:18px; font-weight:700; margin-bottom:8px}
+.xp-item h3 span{color:var(--muted); font-weight:500}
+.xp-item ul{list-style:none; display:flex; flex-direction:column; gap:6px}
+.xp-item li{color:var(--muted); font-size:15px; padding-left:18px; position:relative}
+.xp-item li::before{content:"·"; position:absolute; left:2px; color:var(--accent); font-weight:700}
+
+/* ---------- projects ---------- */
+.proj-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+@media(max-width:720px){.proj-grid{grid-template-columns:1fr}}
+.proj{background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden; display:flex; flex-direction:column; transition:border-color .2s}
+.proj:hover{border-color:var(--accent)}
+.proj-img{height:220px; overflow:hidden; border-bottom:1px solid var(--line); background:var(--surface)}
+.proj-img img{width:100%; height:100%; object-fit:cover; object-position:top; display:block; transition:transform .35s}
+.proj:hover .proj-img img{transform:scale(1.025)}
+.proj-body{padding:24px 26px; display:flex; flex-direction:column; gap:10px; flex:1}
+.proj h3{font-size:17px; font-weight:700}
+.proj .tag{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent)}
+.proj p{font-size:14.5px; color:var(--muted); flex:1}
+.proj a{font-size:14px; font-weight:600}
+
+/* ---------- skills ---------- */
+.skill-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:18px; margin-bottom:48px}
+.skill-group{border:1px solid var(--line); border-radius:12px; padding:22px; background:var(--card)}
+.skill-group h3{font-size:13px; font-family:'JetBrains Mono',monospace; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:12px}
+.skill-group p{font-size:14.5px; color:var(--muted)}
+.ach{display:flex; flex-wrap:wrap; gap:12px}
+.ach span{
+  font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--ink);
+  border:1px solid var(--line); border-radius:8px; padding:9px 16px; background:var(--surface);
+}
+.ach b{color:var(--accent); font-weight:500}
+
+/* ---------- contact ---------- */
+.contact{text-align:left; border-top:1px solid var(--line)}
+.contact h2{font-size:clamp(30px,5vw,44px)}
+.contact .lead{color:var(--muted); max-width:560px; margin-bottom:30px; font-size:17px}
+.contact-row{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:56px}
+footer{padding:26px 0; border-top:1px solid var(--line)}
+footer .wrap{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer a{color:var(--muted)}
+footer a:hover{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#top">RB</a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <a href="https://github.com/RibhavBansal" target="_blank" rel="noopener">GitHub</a>
+      <a class="resume-link" href="resume.pdf" download>Resume ↓</a>
+      <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap" id="top">
+  <h1>Ribhav Bansal</h1>
+  <p class="role">AI &amp; Full-Stack Engineer <span class="at">· Software Development Engineer @ PhonePe</span></p>
+  <p class="value">I ship AI products end-to-end: native clients, Python backends, and LLM pipelines with RAG, GraphRAG, and multi-model orchestration.</p>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="#work">See MeetingMind →</a>
+    <a class="btn btn-ghost" href="resume.pdf" download>Download resume</a>
+  </div>
+  <div class="transcript" aria-hidden="true">
+    <div class="transcript-bar"><span class="dot"></span><span>meetingmind · live transcription</span></div>
+    <div class="transcript-body"><span id="type-target"></span><span class="caret"></span></div>
+  </div>
+</header>
+
+<section class="flagship" id="work">
+  <div class="wrap">
+    <p class="kicker reveal">Flagship project</p>
+    <div class="flagship-head reveal">
+      <h2>MeetingMind</h2>
+      <span class="badge">iOS · Chrome · FastAPI</span>
+    </div>
+    <p class="pitch reveal">An AI meeting assistant spanning iOS, Chrome, and a FastAPI backend — live transcription in 20+ languages, grounded Q&amp;A across all your meetings, and real-time insight engines.</p>
+
+    <div class="cap-grid">
+      <div class="cap reveal">
+        <span class="num">01</span>
+        <h3>Multi-client capture</h3>
+        <p>iOS live mic transcription plus a Chrome extension (Manifest V3, tabCapture/offscreen) for Google Meet — both feeding a shared FastAPI + SQLite backend.</p>
+      </div>
+      <div class="cap reveal">
+        <span class="num">02</span>
+        <h3>Grounded retrieval</h3>
+        <p>Full RAG pipeline (chunking → embeddings → vector store → cosine retrieval) with on-device TF-IDF fallback; GraphRAG over a 9-entity / 9-relation knowledge graph using BFS, community detection, and PageRank for cross-meeting Q&amp;A.</p>
+      </div>
+      <div class="cap reveal">
+        <span class="num">03</span>
+        <h3>Insight engines</h3>
+        <p>Meeting DNA, commitment-drift, contradiction detection, and AI critique — each with an on-device fallback, surfaced in a live dashboard and in-meeting overlay.</p>
+      </div>
+      <div class="cap reveal">
+        <span class="num">04</span>
+        <h3>Resilient orchestration</h3>
+        <p>Four LLM/ASR backends (Gemini, Claude, Whisper, Mistral-7B via Apple MLX) with per-call failover, map-reduce summarization, and a rule-based $0 Demo Mode.</p>
+      </div>
+    </div>
+
+    <div class="arch reveal" aria-label="MeetingMind architecture">
+      <p class="arch-label">Architecture</p>
+      <div class="arch-row">
+        <div class="arch-node"><b>iOS app</b><span>SwiftUI · live mic</span></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node"><b>FastAPI backend</b><span>SQLite · RAG / GraphRAG</span></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node"><b>LLM / ASR layer</b><span>Gemini · Claude · Whisper · MLX</span></div>
+        <div class="arch-arrow">←</div>
+        <div class="arch-node"><b>Chrome ext.</b><span>MV3 · Meet tabCapture</span></div>
+      </div>
+    </div>
+
+    <div class="gallery">
+      <figure class="shot reveal">
+        <div class="shot-bar"><i></i><i></i><i></i><span>meetingmind · knowledge graph</span></div>
+        <img src="assets/mm-graph.webp" alt="MeetingMind knowledge graph: force-directed view of 26 entities and 37 relationships extracted across meetings" width="1600" height="892" loading="lazy">
+        <figcaption>GraphRAG in action — people, tasks, deadlines and decisions extracted into a queryable cross-meeting knowledge graph.</figcaption>
+      </figure>
+      <div class="gallery-row">
+        <figure class="shot reveal">
+          <div class="shot-bar"><i></i><i></i><i></i><span>insights · commitment drift</span></div>
+          <img src="assets/mm-insights.webp" alt="MeetingMind insights dashboard showing per-person follow-through scores and tracked commitments with drift detection" width="1600" height="887" loading="lazy">
+          <figcaption>Commitment-drift engine — per-person follow-through scores across meetings.</figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <div class="shot-bar"><i></i><i></i><i></i><span>meeting · auto-summary</span></div>
+          <img src="assets/mm-meeting.webp" alt="MeetingMind meeting detail page with AI summary, owner-assigned action items, insights, and transcript exports" width="1400" height="1141" loading="lazy">
+          <figcaption>Every meeting → summary, owner-tagged action items, and exports (PDF, .ics, transcript).</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="chips reveal">
+      <span class="chip">Swift</span><span class="chip">SwiftData</span><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Whisper</span><span class="chip">Gemini</span><span class="chip">Claude</span><span class="chip">Apple MLX</span><span class="chip">RAG</span><span class="chip">GraphRAG</span><span class="chip">SQLite</span><span class="chip">Chrome MV3</span>
+    </div>
+    <div class="flagship-links reveal">
+      <a href="https://github.com/RibhavBansal" target="_blank" rel="noopener">View code on GitHub →</a>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <p class="kicker reveal">Experience</p>
+    <h2 class="reveal">PhonePe</h2>
+    <div class="xp">
+      <div class="xp-item reveal">
+        <span class="when">Jul 2025 — Present · Bengaluru</span>
+        <h3>Software Development Engineer <span>· iOS Platform</span></h3>
+        <ul>
+          <li>Shipped passkeys authentication for the PhonePe app.</li>
+          <li>Led the Profile Page revamp — modularization and tech-debt reduction across a high-traffic surface.</li>
+          <li>Drove the CocoaPods → Swift Package Manager migration: faster builds, smaller app binary.</li>
+        </ul>
+      </div>
+      <div class="xp-item reveal">
+        <span class="when">Jan 2025 — Jun 2025</span>
+        <h3>SDE Intern <span>· Payments Platform</span></h3>
+        <ul>
+          <li>Worked on payment-platform scalability and microservice optimization, reducing network latency.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" style="padding-top:0">
+  <div class="wrap">
+    <p class="kicker reveal">Other projects</p>
+    <h2 class="reveal">Range beyond the flagship</h2>
+    <div class="proj-grid">
+      <div class="proj reveal">
+        <div class="proj-img"><img src="assets/houseprice.webp" alt="House Price Prediction web app: form with area, BHK, bath and location inputs returning a price estimate" loading="lazy"></div>
+        <div class="proj-body">
+          <span class="tag">Machine Learning</span>
+          <h3>House Price Prediction</h3>
+          <p>92%-accuracy Bangalore housing-price model trained on 1,000+ listings, tuned with GridSearchCV and k-fold cross-validation. Deployed on AWS behind a Flask REST API with a responsive frontend.</p>
+          <a href="https://github.com/RibhavBansal" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+      <div class="proj reveal">
+        <div class="proj-img"><img src="assets/foodapp.webp" alt="Easy Food Recipes Android app home screen with popular items and food categories" loading="lazy"></div>
+        <div class="proj-body">
+          <span class="tag">Android · Kotlin</span>
+          <h3>Easy Food Recipes</h3>
+          <p>MVVM recipe app with 50+ recipes — Retrofit networking, Room offline caching, and a LiveData-driven reactive UI.</p>
+          <a href="https://github.com/RibhavBansal" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" style="background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <p class="kicker reveal">Skills</p>
+    <h2 class="reveal">Tools I work with</h2>
+    <div class="skill-grid">
+      <div class="skill-group reveal">
+        <h3>AI / ML</h3>
+        <p>RAG · GraphRAG · LLM orchestration &amp; prompt engineering · Whisper (ASR) · embeddings &amp; vector search · on-device ML (Apple MLX) · Scikit-learn</p>
+      </div>
+      <div class="skill-group reveal">
+        <h3>Languages</h3>
+        <p>Python · Swift · Kotlin · C/C++ · SQL · JavaScript · HTML/CSS</p>
+      </div>
+      <div class="skill-group reveal">
+        <h3>Frameworks</h3>
+        <p>FastAPI · Flask · SwiftUI · SwiftData · Retrofit · Room</p>
+      </div>
+      <div class="skill-group reveal">
+        <h3>Cloud / DB</h3>
+        <p>AWS · MySQL · SQLite · Firebase</p>
+      </div>
+    </div>
+    <p class="kicker reveal">Achievements</p>
+    <div class="ach reveal">
+      <span><b>Global Rank 1</b> — Techquezt #8 (AI/ML)</span>
+      <span><b>LeetCode Knight</b> 1987 · best rank 777 / 30k+</span>
+      <span><b>Codeforces Specialist</b> 1401</span>
+      <span><b>1600+</b> problems solved</span>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <p class="kicker reveal">Contact</p>
+    <h2 class="reveal">Let's build something.</h2>
+    <p class="lead reveal">Open to AI and full-stack engineering conversations. Email is the fastest way to reach me.</p>
+    <div class="contact-row reveal">
+      <a class="btn btn-primary" href="mailto:bansalribhav0987@gmail.com">Email me</a>
+      <a class="btn btn-ghost" href="https://github.com/RibhavBansal" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-ghost" href="resume.pdf" download>Resume (PDF)</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Ribhav Bansal</span>
+    <span>IIIT Allahabad · <a href="mailto:bansalribhav0987@gmail.com">bansalribhav0987@gmail.com</a></span>
+  </div>
+</footer>
+
+<script>
+// theme: auto + toggle
+const root=document.documentElement, KEY='rb-theme';
+const saved=localStorage.getItem(KEY);
+const prefersDark=matchMedia('(prefers-color-scheme: dark)');
+function apply(t){root.classList.toggle('dark',t==='dark')}
+apply(saved||(prefersDark.matches?'dark':'light'));
+prefersDark.addEventListener('change',e=>{if(!localStorage.getItem(KEY))apply(e.matches?'dark':'light')});
+document.getElementById('theme-toggle').addEventListener('click',()=>{
+  const next=root.classList.contains('dark')?'light':'dark';
+  localStorage.setItem(KEY,next); apply(next);
+});
+
+// scroll reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// typing transcript with entity highlights
+const target=document.getElementById('type-target');
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const segs=[
+  {t:'"Let\'s ship the '},{t:'RAG pipeline',e:1},{t:' by '},{t:'Friday',e:1},
+  {t:' — '},{t:'Ribhav',e:1},{t:' owns the '},{t:'failover logic',e:1},{t:'."'}
+];
+function render(instant){
+  target.innerHTML='';
+  let chain=Promise.resolve();
+  segs.forEach(s=>{
+    const node=document.createElement(s.e?'span':'span');
+    if(s.e)node.className='ent';
+    target.appendChild(node);
+    if(instant){node.textContent=s.t; if(s.e)node.classList.add('on'); return}
+    chain=chain.then(()=>new Promise(res=>{
+      let i=0;
+      const id=setInterval(()=>{
+        node.textContent=s.t.slice(0,++i);
+        if(i>=s.t.length){clearInterval(id); if(s.e)node.classList.add('on'); setTimeout(res,s.e?180:40)}
+      },34);
+    }));
+  });
+  if(!instant)chain.then(()=>setTimeout(()=>render(false),6000));
+}
+render(reduced);
+</script>
+
+</body>
+</html>
