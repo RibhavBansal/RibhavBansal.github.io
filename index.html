@@ -6,7 +6,7 @@
 <title>Ribhav Bansal — AI & Full-Stack Engineer</title>
 <meta name="description" content="AI & Full-Stack Engineer at PhonePe. I ship AI products end-to-end: native clients, Python backends, and LLM pipelines with RAG, GraphRAG, and multi-model orchestration.">
 <meta property="og:title" content="Ribhav Bansal — AI & Full-Stack Engineer">
-<meta property="og:description" content="SDE @ PhonePe · Builder of MeetingMind — an AI meeting assistant spanning iOS, Chrome, and a FastAPI backend with RAG/GraphRAG.">
+<meta property="og:description" content="SDE @ PhonePe · Builder of KahanDekhu — a live, India-first 'where to watch' tracker on the Play Store — and MeetingMind, an AI meeting assistant spanning iOS, Chrome, and a FastAPI backend with RAG/GraphRAG.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ribhavbansal.vercel.app">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%235046E5'/><text x='50' y='68' font-size='52' font-family='Inter,system-ui,sans-serif' font-weight='700' fill='white' text-anchor='middle'>RB</text></svg>">
@@ -94,6 +94,9 @@ nav{
 .transcript-body .ent.on{opacity:1}
 .caret{display:inline-block; width:8px; height:17px; background:var(--accent); vertical-align:-3px; animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
+.transcript-group{display:flex; gap:18px; flex-wrap:wrap; max-width:980px}
+.transcript-group .transcript{flex:1 1 320px; max-width:480px}
+@media(max-width:760px){.transcript-group .transcript{flex:1 1 100%; max-width:none}}
 @media(prefers-reduced-motion:reduce){
   .dot,.caret{animation:none}
   .transcript-body .ent{opacity:1}
@@ -168,6 +171,7 @@ nav{
 .proj .tag{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent)}
 .proj p{font-size:14.5px; color:var(--muted); flex:1}
 .proj a{font-size:14px; font-weight:600}
+.flagship + .flagship{border-top:none}
 
 /* ---------- skills ---------- */
 .skill-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:18px; margin-bottom:48px}
@@ -212,20 +216,101 @@ footer a:hover{color:var(--accent)}
 <header class="hero wrap" id="top">
   <h1>Ribhav Bansal</h1>
   <p class="role">AI &amp; Full-Stack Engineer <span class="at">· Software Development Engineer @ PhonePe</span></p>
-  <p class="value">I ship AI products end-to-end: native clients, Python backends, and LLM pipelines with RAG, GraphRAG, and multi-model orchestration.</p>
+  <p class="value">I ship products end-to-end — from KahanDekhu, a live India-scale full-stack app, to MeetingMind, an AI pipeline with RAG, GraphRAG, and multi-model orchestration.</p>
   <div class="cta-row">
-    <a class="btn btn-primary" href="#work">See MeetingMind →</a>
+    <a class="btn btn-primary" href="https://kahandekhu.pages.dev" target="_blank" rel="noopener">Try KahanDekhu →</a>
     <a class="btn btn-ghost" href="resume.pdf" download>Download resume</a>
   </div>
-  <div class="transcript" aria-hidden="true">
-    <div class="transcript-bar"><span class="dot"></span><span>meetingmind · live transcription</span></div>
-    <div class="transcript-body"><span id="type-target"></span><span class="caret"></span></div>
+  <div class="transcript-group">
+    <div class="transcript" aria-hidden="true">
+      <div class="transcript-bar"><span class="dot"></span><span>kahandekhu · live lookup</span></div>
+      <div class="transcript-body"><span id="type-target"></span><span class="caret"></span></div>
+    </div>
+    <div class="transcript" aria-hidden="true">
+      <div class="transcript-bar"><span class="dot"></span><span>meetingmind · live transcription</span></div>
+      <div class="transcript-body"><span id="type-target-mm"></span><span class="caret"></span></div>
+    </div>
   </div>
 </header>
 
 <section class="flagship" id="work">
   <div class="wrap">
     <p class="kicker reveal">Flagship project</p>
+    <div class="flagship-head reveal">
+      <h2>KahanDekhu</h2>
+      <span class="badge">PWA · Android · Cloudflare Workers</span>
+    </div>
+    <p class="pitch reveal">An India-first "where to watch" tracker — type a movie or show, see every legal streaming platform it's on (subscription, free, rent, or buy). Live in production on Cloudflare's free tier, with push notifications, a WhatsApp bot, and a Play Store Android app.</p>
+
+    <div class="cap-grid">
+      <div class="cap reveal">
+        <span class="num">01</span>
+        <h3>Where-to-watch aggregation</h3>
+        <p>A TMDB proxy Worker hides the API key and edge-caches search/trending/detail responses, surfacing JustWatch availability grouped into Subscription / Free / Rent / Buy across 8 supported regions.</p>
+      </div>
+      <div class="cap reveal">
+        <span class="num">02</span>
+        <h3>Multi-channel reach</h3>
+        <p>Web Push (VAPID + a Workers cron that re-checks availability every 6h) and a reply-only WhatsApp bot let people get "where to watch" answers without ever opening the app.</p>
+      </div>
+      <div class="cap reveal">
+        <span class="num">03</span>
+        <h3>Accounts & sync</h3>
+        <p>Optional Supabase email/password auth with Row-Level Security; watchlist, region, and service preferences merge across devices on sign-in, with a self-serve account-deletion flow.</p>
+      </div>
+      <div class="cap reveal">
+        <span class="num">04</span>
+        <h3>PWA → Android</h3>
+        <p>Installable PWA with an offline-first service worker, manifest, and icons — packaged as a TWA with domain-verified deep links for Play Store distribution.</p>
+      </div>
+    </div>
+
+    <div class="arch reveal" aria-label="KahanDekhu architecture">
+      <p class="arch-label">Architecture</p>
+      <div class="arch-row">
+        <div class="arch-node"><b>PWA / TWA</b><span>Single-file vanilla JS</span></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node"><b>Cloudflare Workers</b><span>TMDB proxy · push · WhatsApp bot</span></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node"><b>TMDB + JustWatch</b><span>Movie data &amp; availability</span></div>
+        <div class="arch-arrow">←</div>
+        <div class="arch-node"><b>Supabase</b><span>Auth · Postgres · RLS</span></div>
+      </div>
+    </div>
+
+    <div class="gallery">
+      <figure class="shot reveal">
+        <div class="shot-bar"><i></i><i></i><i></i><span>kahandekhu · search & detail</span></div>
+        <img src="assets/kahandekhu-wide.jpg" alt="KahanDekhu desktop view: search bar, trending titles in India, and a Drishyam 2 detail card showing where it's streaming" width="1280" height="800" loading="lazy">
+        <figcaption>Search → trending → detail, with where-to-watch broken out by Subscription / Rent / Buy.</figcaption>
+      </figure>
+      <div class="gallery-row">
+        <figure class="shot reveal">
+          <div class="shot-bar"><i></i><i></i><i></i><span>mobile · search</span></div>
+          <img src="assets/kahandekhu-search.jpg" alt="KahanDekhu mobile search screen with debounced autocomplete and trending titles" loading="lazy">
+          <figcaption>Live, debounced search with trending titles for India.</figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <div class="shot-bar"><i></i><i></i><i></i><span>mobile · browse</span></div>
+          <img src="assets/kahandekhu-browse.jpg" alt="KahanDekhu mobile browse screen with type, genre, and rating filters and a Surprise Me button" loading="lazy">
+          <figcaption>Browse by type, genre, and rating — "Surprise me" opens a random title from the filtered pool.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="chips reveal">
+      <span class="chip">JavaScript</span><span class="chip">Cloudflare Workers</span><span class="chip">Cloudflare D1</span><span class="chip">Supabase</span><span class="chip">TMDB API</span><span class="chip">Web Push (VAPID)</span><span class="chip">WhatsApp Cloud API</span><span class="chip">PWA</span><span class="chip">Android TWA</span>
+    </div>
+    <div class="flagship-links reveal">
+      <a href="https://kahandekhu.pages.dev" target="_blank" rel="noopener">Live app →</a>
+      <a href="https://github.com/RibhavBansal/kahandekhu" target="_blank" rel="noopener">GitHub →</a>
+    </div>
+  </div>
+</section>
+
+<section class="flagship" id="meetingmind">
+  <div class="wrap">
+    <p class="kicker reveal">Also shipped</p>
     <div class="flagship-head reveal">
       <h2>MeetingMind</h2>
       <span class="badge">iOS · Chrome · FastAPI</span>
@@ -418,32 +503,43 @@ document.getElementById('theme-toggle').addEventListener('click',()=>{
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-// typing transcript with entity highlights
-const target=document.getElementById('type-target');
+// typing demo widgets with entity highlights (reusable — hero + in-section demos)
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const segs=[
+function makeTyper(target,segs){
+  function render(instant){
+    target.innerHTML='';
+    let chain=Promise.resolve();
+    segs.forEach(s=>{
+      const node=document.createElement('span');
+      if(s.e)node.className='ent';
+      target.appendChild(node);
+      if(instant){node.textContent=s.t; if(s.e)node.classList.add('on'); return}
+      chain=chain.then(()=>new Promise(res=>{
+        let i=0;
+        const id=setInterval(()=>{
+          node.textContent=s.t.slice(0,++i);
+          if(i>=s.t.length){clearInterval(id); if(s.e)node.classList.add('on'); setTimeout(res,s.e?180:40)}
+        },34);
+      }));
+    });
+    if(!instant)chain.then(()=>setTimeout(()=>render(false),6000));
+  }
+  return render;
+}
+
+// hero — both flagship live demos, visible immediately (no scrolling needed)
+const heroSegs=[
+  {t:'Search "'},{t:'Drishyam 2',e:1},{t:'" → '},
+  {t:'Netflix',e:1},{t:' · '},{t:'Prime Video',e:1},{t:' (rent) · '},{t:'8.4★',e:1}
+];
+makeTyper(document.getElementById('type-target'),heroSegs)(reduced);
+
+const mmSegs=[
   {t:'"Let\'s ship the '},{t:'RAG pipeline',e:1},{t:' by '},{t:'Friday',e:1},
   {t:' — '},{t:'Ribhav',e:1},{t:' owns the '},{t:'failover logic',e:1},{t:'."'}
 ];
-function render(instant){
-  target.innerHTML='';
-  let chain=Promise.resolve();
-  segs.forEach(s=>{
-    const node=document.createElement(s.e?'span':'span');
-    if(s.e)node.className='ent';
-    target.appendChild(node);
-    if(instant){node.textContent=s.t; if(s.e)node.classList.add('on'); return}
-    chain=chain.then(()=>new Promise(res=>{
-      let i=0;
-      const id=setInterval(()=>{
-        node.textContent=s.t.slice(0,++i);
-        if(i>=s.t.length){clearInterval(id); if(s.e)node.classList.add('on'); setTimeout(res,s.e?180:40)}
-      },34);
-    }));
-  });
-  if(!instant)chain.then(()=>setTimeout(()=>render(false),6000));
-}
-render(reduced);
+const renderMM=makeTyper(document.getElementById('type-target-mm'),mmSegs);
+if(reduced){renderMM(true)}else{setTimeout(()=>renderMM(false),900)}
 </script>
 
 </body>
